@@ -167,70 +167,77 @@ html, body {
 
 /* TIMER responsive y wow */
 .timer {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-}
-
-.timer div {
-  background: #f8fdf9;
-  border: 1px solid #e3f6e5;
-  border-radius: 1rem;
-  padding: 1rem .7rem .8rem .7rem;
-  min-width: 70px;
-  width: clamp(65px, 21vw, 110px);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.18s, transform 0.14s;
-  flex: 1 1 70px;
-  margin-bottom: 0.2rem;
-}
-
-.timer span {
-  font-size: clamp(1.25rem, 6vw, 2.25rem);
-  font-weight: 700;
-  color: var(--azul-profundo);
-  line-height: 1.1;
-}
-
-.timer label {
-  font-size: clamp(0.82rem, 3vw, 1rem);
-  color: var(--azul-cielo);
-  margin-top: .21rem;
-  font-weight: 600;
-  text-transform: lowercase;
-  letter-spacing: 0.5px;
-  word-break: break-word;
-  text-align: center;
-  line-height: 1.15;
-}
-
-@media (max-width: 550px) {
-  .timer {
-    gap: 0.38rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
+  
   .timer div {
-    padding: 0.7rem 0.3rem 0.6rem 0.3rem;
-    min-width: 55px;
-    width: 22vw;
-    font-size: 0.95rem;
+    background: #f8fdf9;
+    border: 1px solid #e3f6e5;
+    border-radius: 1rem;
+    padding: 0.75rem 0.2rem 0.7rem 0.2rem;
+    min-width: 56px;
+    max-width: 90px;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0px;
+    margin-bottom: 0;
   }
-  .timer label::after {
-    /* Abreviatura responsive */
-    content: attr(data-short);
-    display: inline;
-    margin-left: 2px;
-  }
-  .timer label {
-    font-size: 0.8rem;
+  
+  .timer span {
+    font-size: clamp(1.1rem, 6vw, 2.1rem);
+    font-weight: 700;
     color: var(--azul-profundo);
+    line-height: 1.1;
   }
-}
+  
+  .timer label {
+    font-size: clamp(0.80rem, 3vw, 1rem);
+    color: var(--azul-cielo);
+    margin-top: .19rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.12;
+    word-break: keep-all;
+  }
+  
+  @media (max-width: 600px) {
+    .timer label {
+      font-size: 0.74rem;
+      color: var(--azul-profundo);
+    }
+    .timer label {
+      /* Oculta el texto del label */
+      color: transparent;
+      position: relative;
+    }
+    .timer label::after {
+      content: attr(data-short);
+      color: var(--azul-profundo);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: fit-content;
+      height: fit-content;
+      text-align: center;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      /* Quita sombra rara si había */
+      filter: none;
+      pointer-events: none;
+    }
+  }
 
 /* Weather */
 .weather {
@@ -411,4 +418,3 @@ button:hover, button:focus {
     font-size: 2.1rem;
     margin-bottom: 0.17em;
   }
-  
