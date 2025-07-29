@@ -64,9 +64,21 @@ function capitalize(str) {
 }
 
 function fetchWeather() {
-    fetch("https://wttr.in/40.3384,-5.1436?format=j1")
+    fetch("https://wttr.in/Parador+de+Gredos?format=j1&lang=es")
       .then(res => res.json())
       .then(data => {
+        // --- NUEVO: Extrae la fecha/hora de la última actualización ---
+        const obsDateTime = data.current_condition[0].localObsDateTime; // "2024-07-29 14:25 PM"
+        const [fecha, hora] = obsDateTime.split(" ");
+        const [yyyy, mm, dd] = fecha.split("-");
+        const fechaES = `${dd}/${mm}/${yyyy}`;
+        // Hora sin AM/PM
+        const horaES = hora;
+
+        // Pinta la fecha/hora en tu div
+        document.getElementById("weather-last-update").textContent =
+          `Actualizado el ${fechaES} a las ${horaES} h`;
+
         const forecast = data.weather.slice(0,3)
         const weatherList = document.getElementById("weather-list")
         weatherList.innerHTML = ""
@@ -82,16 +94,18 @@ function fetchWeather() {
           `
           weatherList.insertAdjacentHTML("beforeend", html)
         })
-        // --- Analiza nubosidad nocturna para la sección de estrellas ---
         analizarEstrellas(data)
       })
       .catch(() => {
         document.getElementById("weather-list").innerHTML = "<p>No se pudo cargar el tiempo.</p>"
         document.getElementById("stargazing-advice").innerHTML =
           `<span class="emoji">⚠️</span><span>Error consultando el clima.</span>`;
+        document.getElementById("weather-last-update").textContent =
+          "Actualización no disponible";
       })
   }
 fetchWeather()
+
 
 // --------- SECCIÓN ¿NOCHE DE ESTRELLAS? -------------
 function analizarEstrellas(weatherData) {

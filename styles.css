@@ -237,7 +237,15 @@ html, body {
       filter: none;
       pointer-events: none;
     }
+
+    .weather-update {
+        font-size: 0.80rem;
+        margin-top: 0.42em;
+        margin-bottom: 0.4em;
+      }
+    
   }
+
 
 /* Weather */
 .weather {
@@ -255,11 +263,10 @@ html, body {
   display: inline-block;
 }
 .weather-list {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.92rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.92rem;
+    justify-content: center;
 }
 .weather-day {
   background: #f8fdfb;
@@ -418,3 +425,17 @@ button:hover, button:focus {
     font-size: 2.1rem;
     margin-bottom: 0.17em;
   }
+
+  .weather-update {
+    font-size: 0.89rem;
+    color: #7e998a;
+    margin: 0.5em 0 0.6em 0;
+    text-align: center;
+    width: 100%;
+    opacity: 0.85;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.18s;
+  }
+
+  
