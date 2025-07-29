@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  /* Paleta premium naturaleza */
+  --verde-oscuro: #2d6a4f;
+  --verde-suave: #74c69d;
+  --azul-cielo: #8ecae6;
+  --azul-profundo: #40916c;
+  --acento-amarillo: #ffd166;
+  --acento-rosa: #f3d9fa;
+  --acento-tierra: #e9c46a;
+  --bg-grad: linear-gradient(-45deg,
+    #d0efea, #b7d7be, #8ecae6, #219ebc, #52b788, #023047, #2d6a4f);
+  --text-main: #232323;
+  --glass-bg: rgba(255,255,255,0.88);
+  --glass-border: rgba(112, 160, 137, 0.14);
+  --glass-shadow: 0 6px 40px 0 rgba(34,54,73,0.12);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: var(--bg-grad);
+  background-size: 400% 400%;
+  animation: gradientShift 38s ease infinite;
+  color: var(--text-main);
+  font-size: clamp(15.5px, 2vw, 18px);
+  overflow-x: hidden;
+}
+
+/* Animación gradiente fondo wow */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.svg-background {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mountains, .trees {
+  pointer-events: none;
+}
+
+.mountains {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100vw; height: 280px;
+  z-index: 1;
+  filter: drop-shadow(0 -8px 25px rgba(0,0,0,0.11));
+  animation: mountainSway 29s ease-in-out infinite;
+}
+@keyframes mountainSway {
+  0%, 100% { transform: translateX(0px);}
+  50% { transform: translateX(6px);}
+}
+.trees {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100vw; height: 120px;
+  z-index: 2;
+  filter: drop-shadow(0 -3px 12px rgba(0,0,0,0.16));
+  animation: treeSway 24s ease-in-out infinite;
+}
+@keyframes treeSway {
+  0%, 100% { transform: translateX(0px) scale(1);}
+  33% { transform: translateX(-3px) scale(1.008);}
+  66% { transform: translateX(3px) scale(0.992);}
+}
+
+#particles-canvas {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 1 !important;
+  mix-blend-mode: lighten;
+}
+
+.app-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  padding: 4vw 2vw;
+}
+
+/* CARD glassmorphism wow */
+.card {
+  background: var(--glass-bg);
+  color: var(--text-main);
+  border-radius: 2.1rem;
+  box-shadow: var(--glass-shadow);
+  border: 1.5px solid var(--glass-border);
+  padding: clamp(2.5rem, 4vw, 3.3rem);
+  max-width: 445px;
+  width: 100%;
+  margin: 2vw;
+  backdrop-filter: blur(17px) saturate(170%);
+  -webkit-backdrop-filter: blur(17px) saturate(170%);
+  transition: box-shadow 0.23s, transform 0.21s;
+  position: relative;
+  overflow: visible;
+}
+.card:hover {
+  box-shadow: 0 16px 48px 0 rgba(34,54,73,0.17);
+  transform: translateY(-5px) scale(1.019);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.85rem;
+}
+.logo {
+  font-size: 2.65rem;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+  margin-bottom: .28rem;
+  animation: float 3.2s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-9px);}
+}
+.header h1 {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  color: var(--verde-oscuro);
+  margin-bottom: .2rem;
+  letter-spacing: -0.02em;
+}
+.subtitle {
+  color: var(--azul-cielo);
+  margin-top: .5rem;
+  font-size: 1.12rem;
+  font-weight: 500;
+}
+
+/* Countdown */
+.countdown {
+  margin: 1.7rem 0;
+  text-align: center;
+}
+.countdown h2 {
+  font-weight: 600;
+  font-size: 1.22rem;
+  color: var(--text-main);
+  margin-bottom: .6rem;
+  border-bottom: 1.3px solid var(--verde-suave);
+  padding-bottom: 0.48rem;
+  display: inline-block;
+}
+
+/* TIMER responsive y wow */
+.timer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.timer div {
+  background: #f8fdf9;
+  border: 1px solid #e3f6e5;
+  border-radius: 1rem;
+  padding: 1rem .7rem .8rem .7rem;
+  min-width: 70px;
+  width: clamp(65px, 21vw, 110px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.14s;
+  flex: 1 1 70px;
+  margin-bottom: 0.2rem;
+}
+
+.timer span {
+  font-size: clamp(1.25rem, 6vw, 2.25rem);
+  font-weight: 700;
+  color: var(--azul-profundo);
+  line-height: 1.1;
+}
+
+.timer label {
+  font-size: clamp(0.82rem, 3vw, 1rem);
+  color: var(--azul-cielo);
+  margin-top: .21rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+  word-break: break-word;
+  text-align: center;
+  line-height: 1.15;
+}
+
+@media (max-width: 550px) {
+  .timer {
+    gap: 0.38rem;
+  }
+  .timer div {
+    padding: 0.7rem 0.3rem 0.6rem 0.3rem;
+    min-width: 55px;
+    width: 22vw;
+    font-size: 0.95rem;
+  }
+  .timer label::after {
+    /* Abreviatura responsive */
+    content: attr(data-short);
+    display: inline;
+    margin-left: 2px;
+  }
+  .timer label {
+    font-size: 0.8rem;
+    color: var(--azul-profundo);
+  }
+}
+
+/* Weather */
+.weather {
+  margin: 2rem 0 1.2rem 0;
+  width: 100%;
+  text-align: center;
+}
+.weather h2 {
+  font-weight: 600;
+  font-size: 1.22rem;
+  color: var(--text-main);
+  margin-bottom: .8rem;
+  border-bottom: 1.3px solid var(--azul-cielo);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+.weather-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.92rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.weather-day {
+  background: #f8fdfb;
+  border: 1px solid #e3f6e5;
+  border-radius: 1rem;
+  padding: 1rem .45rem;
+  min-width: 90px;
+  width: 100px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: background 0.18s, transform 0.14s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather-day:hover {
+  background: #e6fbe9;
+  transform: translateY(-3px);
+}
+.weather-day .icon {
+  font-size: 2.05rem;
+  margin: .42rem 0;
+  color: var(--azul-cielo);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.03));
+}
+.weather-day .temp {
+  font-weight: 600;
+  font-size: 1.14rem;
+  color: var(--text-main);
+}
+.weather-day .desc {
+  color: var(--verde-suave);
+  font-size: 0.84rem;
+  margin-top: .25rem;
+}
+.weather-day .date {
+  font-size: 0.9rem;
+  color: var(--azul-cielo);
+  font-weight: 600;
+  margin-bottom: 0.18rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: 1.7rem;
+  text-align: center;
+  font-size: 0.96rem;
+  color: #8fa1a7;
+}
+.footer a {
+  color: var(--azul-cielo);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer a:hover {
+  color: var(--verde-suave);
+}
+
+/* Botón minimalista WOW */
+button {
+  background: #f8fdfb;
+  color: var(--verde-oscuro);
+  border: 1.3px solid #a6dab7;
+  border-radius: 0.8rem;
+  padding: 0.92em 2.1em;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1.09rem;
+  box-shadow: 0 2px 6px rgba(44, 77, 70, 0.08);
+  cursor: pointer;
+  transition: background 0.17s, box-shadow 0.15s, color 0.13s;
+}
+button:hover, button:focus {
+  background: #e6fbe9;
+  color: var(--azul-profundo);
+  box-shadow: 0 3px 12px rgba(44,77,70,0.14);
+  outline: none;
+}
+
+/* Responsive card & global tweaks */
+@media (max-width: 700px) {
+  .card {
+    padding: clamp(1.2rem, 7vw, 2.2rem) clamp(0.3rem, 5vw, 1rem);
+    max-width: 98vw;
+  }
+  .logo {
+    font-size: 2.2rem;
+  }
+  .header h1 {
+    font-size: clamp(1.17rem, 6vw, 1.7rem);
+  }
+  .weather-list {
+    gap: 0.34rem;
+  }
+  .weather-day {
+    width: 30vw;
+    min-width: 0;
+    font-size: 0.93rem;
+    padding: .8rem .18rem .6rem .18rem;
+  }
+  .timer div {
+    min-width: 41px;
+    font-size: 0.91rem;
+    padding: .7rem .17rem .6rem .17rem;
+  }
+  .timer span {
+    font-size: 1.38rem;
+  }
+}
+
+/* Animación entrada wow */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.card > * {
+  animation: slideIn 0.7s cubic-bezier(.57,.21,.69,.96) forwards;
+}
+.card > *:nth-child(1) { animation-delay: 0.11s; }
+.card > *:nth-child(2) { animation-delay: 0.21s; }
+.card > *:nth-child(3) { animation-delay: 0.31s; }
+.card > *:nth-child(4) { animation-delay: 0.41s; }
+
+
+.stargazing {
+    margin: 2.1rem 0 1.2rem 0;
+    text-align: center;
+  }
+  .stargazing h2 {
+    font-weight: 600;
+    font-size: 1.18rem;
+    color: var(--azul-profundo);
+    margin-bottom: .7rem;
+    border-bottom: 1.2px solid var(--verde-suave);
+    padding-bottom: 0.48rem;
+    display: inline-block;
+  }
+  .stargazing-advice {
+    margin: 0.7rem 0 0.6rem 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    padding: 1.1em 1.3em;
+    background: #f8fdf9;
+    border: 1px solid #e3f6e5;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4em;
+    min-height: 54px;
+    justify-content: center;
+    transition: background 0.18s, box-shadow 0.13s;
+  }
+  .stargazing-advice .emoji {
+    font-size: 2.1rem;
+    margin-bottom: 0.17em;
+  }
+  
